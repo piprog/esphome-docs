@@ -81,6 +81,16 @@ Select the firmware binary and finally press "Flash ESP".
     are connected correctly if flashing using a USB to UART bridge. For some devices you need to
     keep pressing the BOOT button until flashing has begun (ie. Geekcreit DOIT ESP32 DEVKIT V1).
 
+.. note::
+    There were issues with NodeMCU-ESP-32S (and probably other variants): after ESPHome Flasher GUI on Windows it gave "flash read err, 1000" in a loop, 
+    seems the bootloader was missing. Had to install the python version (command line did not work for precompiled GUI exe).
+    For further details see https://github.com/esphome/esphome-flasher / Installation using pip and see https://github.com/esphome/issues/issues/598#issuecomment-536311696
+    Then the following created a properly functioning OTAable install (bootloader_qio_80m.bin is from https://github.com/espressif/arduino-esp32/blob/b588aff6d6edfdc764c2d687a3f1b7242e96b176/tools/sdk/bin/bootloader_qio_80m.bin):
+
+.. code-block:: bash
+
+    esphomeflasher <name_of_bin_generated_by_ESPHome>.bin --bootloader bootloader_qio_80m.bin
+
 Help! Something's not working!!
 -------------------------------
 
